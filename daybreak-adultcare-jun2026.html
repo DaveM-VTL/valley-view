@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Valley View – DayBreak AdultCare – June 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 2rem; color: #1a1a1a; }
+
+  .print-btn { display: block; margin: 0 auto 1.5rem; padding: 10px 28px; background: #005B8E; color: #fff; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+  .booklet-page { max-width: 820px; margin: 0 auto 2rem; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; page-break-after: always; background: #fff; }
+  .booklet-page:last-child { page-break-after: avoid; }
+
+  /* ── COVER ── */
+  .cover { display: flex; min-height: 1056px; }
+  .sidebar { width: 200px; flex-shrink: 0; background: #005B8E; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 2rem 1rem; }
+  .sidebar-text { color: #fff; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); opacity: 0.55; }
+  .cover-main { flex: 1; background: #fff; display: flex; flex-direction: column; padding: 2.5rem 2.5rem 2rem; }
+  .logo-row { padding-bottom: 2rem; border-bottom: 2.5px solid #005B8E; margin-bottom: 0; }
+  .logo-row img { height: 150px; object-fit: contain; display: block; }
+  .title-block { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 2rem 0; }
+  .title-block .eyebrow { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+  .title-block h1 { font-size: 52px; font-weight: 700; color: #1a1a1a; line-height: 1.1; margin-bottom: 0.6rem; }
+  .title-block .subtitle { font-size: 17px; color: #005B8E; font-weight: 600; }
+  .cover-divider { border: none; border-top: 2.5px solid #005B8E; margin-bottom: 1.5rem; }
+  .prepared-block .label { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .prepared-block .client { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+  .prepared-block .month { font-size: 13px; color: #888; margin-top: 4px; }
+
+  /* ── PAGE 2 CHECK-IN ── */
+  .page { background: #fff; padding: 2rem 2.5rem; }
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .header img { height: 110px; object-fit: contain; }
+  .header-right { text-align: right; }
+  .header-right .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+  .header-right .date { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-top: 2px; }
+  .divider { border: none; border-top: 2.5px solid #005B8E; margin-bottom: 1rem; }
+  .client-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 1.25rem; }
+  .client-name { font-size: 20px; font-weight: 700; color: #005B8E; }
+  .client-meta { font-size: 13px; color: #888; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.25rem; }
+  .stat { background: #f0f6fb; border-radius: 8px; padding: 0.75rem 1rem; text-align: center; }
+  .stat-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .stat-value { font-size: 26px; font-weight: 700; color: #005B8E; }
+  .tbr-green { color: #2a9d2a; }
+  .tbr-red { color: #cc2222; }
+  .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: #888; margin-bottom: 8px; font-weight: 600; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+  .card { border: 1px solid #e0e0e0; border-radius: 10px; padding: 0.85rem 1rem; }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #005B8E; flex-shrink: 0; }
+  .dot-red { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #cc2222; flex-shrink: 0; }
+  .card-title { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+  .card-month { font-size: 10.5px; font-weight: 600; color: #005B8E; margin-right: 4px; }
+  .card-body { font-size: 12px; color: #555; line-height: 1.6; }
+  .open-items { border: 1px solid #e0e0e0; border-radius: 10px; padding: 0.85rem 1.1rem; margin-bottom: 1.25rem; }
+  .item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; }
+  .item:last-child { margin-bottom: 0; }
+  .item-bullet { color: #005B8E; font-size: 10px; line-height: 1.8; flex-shrink: 0; }
+  .item-text { font-size: 12px; color: #555; line-height: 1.6; }
+  .footer { border-top: 1px solid #e8e8e8; padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-size: 11px; color: #aaa; }
+  .footer-right { font-size: 11px; color: #aaa; text-align: right; }
+
+  /* ── PAGE 3 NEWSLETTER ── */
+  .nl-header { padding: 1.5rem 2.5rem 1rem; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+  .nl-header img { height: 100px; object-fit: contain; }
+  .nl-header-right { text-align: right; }
+  .nl-header-right .nl-label { font-size: 13px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+  .nl-header-right .nl-title { font-size: 28px; font-weight: 700; color: #005B8E; margin-top: 4px; }
+  .nl-header-right .nl-date { font-size: 16px; color: #888; margin-top: 4px; }
+  .nl-divider { border: none; border-top: 2.5px solid #005B8E; margin: 0 2.5rem 1.5rem; }
+  .nl-body { padding: 0 2.5rem 1.5rem; display: flex; flex-direction: column; gap: 1.1rem; background: #fff; }
+  .hero { background: #005B8E; border-radius: 10px; padding: 1.4rem 1.6rem; color: #fff; }
+  .hero .tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 6px; }
+  .hero h2 { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+  .hero p { font-size: 12px; line-height: 1.75; opacity: 0.92; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nl-card { border: 1px solid #e0e0e0; border-radius: 10px; padding: 1rem 1.1rem; }
+  .nl-card .tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #005B8E; font-weight: 700; margin-bottom: 5px; }
+  .nl-card h3 { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .nl-card p { font-size: 12px; color: #555; line-height: 1.65; }
+  .tip-box { background: #f0f6fb; border-radius: 10px; padding: 1rem 1.25rem; display: flex; gap: 14px; align-items: flex-start; }
+  .tip-icon { width: 34px; height: 34px; background: #005B8E; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .tip-icon svg { width: 16px; height: 16px; fill: #fff; }
+  .tip-content .tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #005B8E; font-weight: 700; margin-bottom: 4px; }
+  .tip-content h3 { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 5px; }
+  .tip-content p { font-size: 12px; color: #555; line-height: 1.65; }
+  .nl-footer { border-top: 1px solid #e8e8e8; padding: 0.75rem 2.5rem; display: flex; justify-content: space-between; background: #fff; }
+
+  /* ── PAGE 4 REVIEW ── */
+  .rv-header { padding: 1.5rem 2.5rem 1rem; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+  .rv-header img { height: 100px; object-fit: contain; }
+  .rv-header-right { text-align: right; }
+  .rv-header-right .label { font-size: 13px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+  .rv-header-right .title { font-size: 28px; font-weight: 700; color: #005B8E; margin-top: 4px; }
+  .rv-header-right .date { font-size: 16px; color: #888; margin-top: 4px; }
+  .rv-divider { border: none; border-top: 2.5px solid #005B8E; margin: 0 2.5rem 0; }
+  .rv-body { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem; gap: 1.5rem; text-align: center; background: #fff; min-height: 800px; }
+  .intro-badge { background: #f0f6fb; border-radius: 30px; padding: 6px 18px; font-size: 12px; color: #005B8E; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .rv-body h2 { font-size: 28px; font-weight: 700; color: #1a1a1a; line-height: 1.2; max-width: 480px; }
+  .rv-body p { font-size: 14px; color: #555; line-height: 1.7; max-width: 440px; }
+  .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; max-width: 560px; }
+  .qr-card { border: 1px solid #e0e0e0; border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .qr-card .location-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; font-weight: 700; }
+  .qr-card .location-name { font-size: 18px; font-weight: 700; color: #005B8E; }
+  .qr-card .scan-note { font-size: 10px; color: #aaa; word-break: break-all; }
+  .stars { display: flex; gap: 6px; justify-content: center; }
+  .star { width: 28px; height: 28px; }
+  .rv-footer { border-top: 1px solid #e8e8e8; padding: 0.75rem 2.5rem; display: flex; justify-content: space-between; background: #fff; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .booklet-page { box-shadow: none; border-radius: 0; margin: 0; }
+    .print-btn { display: none; }
+    .top-nav { display: none; }
+    .cover { min-height: 0; height: 100vh; max-height: 100vh; overflow: hidden; }
+    @page { margin: 0; size: letter portrait; }
+  }
+
+  /* ── NAV BAR ── */
+  .top-nav { position: sticky; top: 0; z-index: 100; background: #005B8E; display: flex; justify-content: center; gap: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+  .top-nav a { color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 22px; border-right: 1px solid rgba(255,255,255,0.15); transition: background 0.18s; }
+  .top-nav a:last-child { border-right: none; }
+  .top-nav a:hover { background: rgba(255,255,255,0.15); }
+  @media print { .top-nav { display: none; } }
+
+  /* ── CARD HOVER ── */
+  .card { transition: box-shadow 0.2s, transform 0.2s; cursor: default; }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,91,142,0.13); transform: translateY(-2px); }
+  .nl-card { transition: box-shadow 0.2s, transform 0.2s; }
+  .nl-card:hover { box-shadow: 0 4px 16px rgba(0,91,142,0.13); transform: translateY(-2px); }
+
+  /* ── EXPANDABLE OPEN ITEMS ── */
+  .open-items-toggle { cursor: pointer; user-select: none; display: flex; align-items: center; justify-content: space-between; }
+  .open-items-toggle .toggle-icon { font-size: 14px; color: #005B8E; font-weight: 700; transition: transform 0.2s; }
+  .open-items-toggle.collapsed .toggle-icon { transform: rotate(-90deg); }
+  .open-items-body { overflow: hidden; transition: max-height 0.35s ease, opacity 0.3s; max-height: 600px; opacity: 1; }
+  .open-items-body.hidden { max-height: 0; opacity: 0; }
+
+  /* ── CLICKABLE QR CARDS ── */
+  a.qr-card { text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; }
+  a.qr-card:hover { box-shadow: 0 6px 20px rgba(0,91,142,0.15); transform: translateY(-3px); }
+  a.qr-card::after { content: '↗ Click to leave a review'; display: block; font-size: 10px; color: #005B8E; font-weight: 600; margin-top: 4px; opacity: 0.7; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .qr-grid { grid-template-columns: 1fr; max-width: 280px; }
+    .top-nav a { font-size: 10px; padding: 10px 12px; }
+    .cover { flex-direction: column; }
+    .sidebar { width: 100%; writing-mode: horizontal-tb; transform: none; min-height: 50px; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="top-nav">
+  <a href="#page-cover">Cover</a>
+  <a href="#page-checkin">Account Review</a>
+  <a href="#page-newsletter">Tech Insider</a>
+  <a href="#page-review">Leave a Review</a>
+</nav>
+
+<button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+
+<!-- ══════════════ PAGE 1: COVER ══════════════ -->
+<div class="booklet-page" id="page-cover">
+  <div class="cover">
+    <div class="sidebar">
+      <span class="sidebar-text">Valley TechLogic · Monthly Review</span>
+    </div>
+    <div class="cover-main">
+      <div class="logo-row">
+        <img src="https://image2url.com/r2/default/images/1775769377217-bb1e39c8-2692-4ccc-899a-24767e50e011.jpg" alt="Valley TechLogic" onerror="this.style.display='none'" />
+      </div>
+      <div class="title-block">
+        <div class="eyebrow">Monthly Client Booklet</div>
+        <h1>The Valley<br>View</h1>
+        <div class="subtitle">Your Monthly IT Report &amp; Update</div>
+      </div>
+      <hr class="cover-divider">
+      <div class="prepared-block">
+        <div class="label">Prepared for</div>
+        <div class="client">DayBreak AdultCare</div>
+        <div class="month">June 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 2: CLIENT CHECK-IN ══════════════ -->
+<div class="booklet-page" id="page-checkin">
+  <div class="page">
+    <div class="header">
+      <img src="https://image2url.com/r2/default/images/1775769377217-bb1e39c8-2692-4ccc-899a-24767e50e011.jpg" alt="Valley TechLogic" onerror="this.style.display='none'" />
+      <div class="header-right">
+        <div class="label">Account Review</div>
+        <div class="date">June 2026</div>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="client-row">
+      <div class="client-name">Day Break Adult Day Health Care</div>
+      <div class="client-meta">Atwater, CA</div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">Endpoints</div>
+        <div class="stat-value">42</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">M365 Users</div>
+        <div class="stat-value">N/A</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Last TBR</div>
+        <div class="stat-value tbr-red">Jun 2023</div>
+      </div>
+    </div>
+    <div class="section-title">What we've been working on</div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="dot"></div>
+          <div class="card-title"><span class="card-month">March 2026 ·</span> Office Relocation &amp; Site Setup</div>
+        </div>
+        <div class="card-body">The facility completed a full office move to a new location at 1500 Winton Way in Atwater. An onsite team assisted with the physical transition, including disconnecting and reconnecting all workstations, peripherals, and networking equipment. A loaner system was temporarily deployed as a session border controller to maintain phone service continuity through the move, with a permanent solution planned for later in the year. Pre-move site walkthroughs were conducted to plan for wireless access point placement and camera coverage at the new space.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="dot"></div>
+          <div class="card-title"><span class="card-month">March 2026 ·</span> VoIP Phone System Configuration</div>
+        </div>
+        <div class="card-body">The office move created an opportunity to review and reconfigure the VoIP phone system for the new environment. Multiple sessions addressed phone setup for individual staff members, 3CX configuration, and VoIP routing questions related to the new address. Ring patterns and extension assignments were verified and updated. Follow-up work confirmed that all inbound and outbound call paths were functioning correctly after the network transition.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="dot"></div>
+          <div class="card-title"><span class="card-month">April 2026 ·</span> Workstation &amp; Hardware Deployments</div>
+        </div>
+        <div class="card-body">New hardware was deployed at the new office location, including a workstation and a laptop configured for staff use. The session border controller was updated to align with the new network infrastructure. Printers were reconnected and mapped, and TurboCalAim was installed and validated on newly configured machines to restore full clinical workflow access for staff at the Atwater site.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="dot"></div>
+          <div class="card-title"><span class="card-month">May 2026 ·</span> Printer &amp; Scanning Infrastructure</div>
+        </div>
+        <div class="card-body">May focused on stabilizing the printing and scanning environment following the office move. New printers were installed and configured across workstations, and scan-to-folder routing was established to ensure documents land in the correct network directories. Several scan connectivity issues were resolved through hands-on workstation configuration. Phone line settings were also finalized, including separate ringtone assignments and an update to the main incoming line.</div>
+      </div>
+
+    </div>
+    <div class="section-title open-items-toggle" onclick="toggleOpenItems(this)">
+      Open items (in progress) <span class="toggle-icon">▼</span>
+    </div>
+    <div class="open-items open-items-body" id="open-items-body">
+      <div class="item">
+        <div class="item-bullet">●</div>
+        <div class="item-text"><strong>Huntress Security Alert — Under Review</strong> — A low-severity security event was detected on a workstation and flagged by the Huntress EDR platform on June 9. The alert is currently under active investigation. No service disruption has been reported and the situation is being monitored pending analysis and resolution.</div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-left">Valley TechLogic &middot; (209) 357-3121 &middot; info@valleytechlogic.com</div>
+      <div class="footer-right">Prepared for Day Break Adult Day Health Care &middot; June 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 3: NEWSLETTER ══════════════ -->
+<div class="booklet-page" id="page-newsletter">
+  <div class="nl-header">
+    <img src="https://image2url.com/r2/default/images/1775769377217-bb1e39c8-2692-4ccc-899a-24767e50e011.jpg" alt="Valley TechLogic" onerror="this.style.display='none'" />
+    <div class="nl-header-right">
+      <div class="nl-label">Monthly Newsletter</div>
+      <div class="nl-title">Valley Tech Insider</div>
+      <div class="nl-date">June 2026</div>
+    </div>
+  </div>
+  <hr class="nl-divider">
+  <div class="nl-body">
+
+    <div class="hero">
+      <div class="tag">Feature Story</div>
+      <h2>A Night to Remember: Valley TechLogic's First Annual Client Appreciation &amp; Local Business Mixer</h2>
+      <p>Valley TechLogic recently hosted its First Annual Client Appreciation &amp; Local Business Mixer — an evening designed to celebrate the businesses we serve and bring our community together. Clients, partners, and local business owners joined us for networking, conversation, and a chance to connect face to face. It was an opportunity to hear directly from the people we support, share what's ahead for technology in the Central Valley, and simply say thank you. We're genuinely grateful to everyone who came out and made the evening so memorable. These relationships are the reason we show up every day, and events like this remind us of the community we're all a part of. We look forward to making this an annual tradition and continuing to grow alongside the businesses that trust us with their IT.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="nl-card">
+        <div class="tag">Cybersecurity</div>
+        <h3>Protecting Your Accounts Payable Process from AI Fraud</h3>
+        <p>AI-powered fraud is increasingly targeting accounts payable teams — using voice cloning and spoofed emails to impersonate vendors or executives and redirect payments to fraudulent accounts. These attacks are convincing because they reference real invoice numbers and known contacts, often sourced from prior data breaches or public records. Finance staff should require a separate, verified callback before processing any payment change request, regardless of how legitimate the message appears. Multi-factor authentication on accounting platforms and a two-person approval requirement for payment modifications are among the strongest defenses available. Training staff to recognize urgency-based pressure tactics is equally important.</p>
+      </div>
+      <div class="nl-card">
+        <div class="tag">IT Management</div>
+        <h3>SaaS Offboarding: Are "Zombie" Accounts Putting You at Risk?</h3>
+        <p>When employees leave, their accounts are often disabled — but SaaS subscriptions tied to those accounts frequently remain active and accessible. These "zombie accounts" in tools like Dropbox, DocuSign, or project management platforms continue to incur charges and, more critically, may still hold sensitive data or active integrations. A structured offboarding checklist that includes every SaaS platform the employee accessed is the only reliable way to close these gaps. IT and HR should review the full software roster quarterly to identify unused licenses and dormant access. Failing to do so creates both unnecessary cost and a potential security gap that cyber insurers are increasingly flagging during audits.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 1 5 5v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0-8a3 3 0 0 0-3 3v1h6V6a3 3 0 0 0-3-3z"/></svg>
+      </div>
+      <div class="tip-content">
+        <div class="tag">Tip of the Month — Passkey Migration</div>
+        <h3>Start Your Move to Passwordless Authentication</h3>
+        <p>Passkeys replace traditional passwords with a cryptographic key pair stored on your device, making phishing virtually impossible and sign-ins faster. Most major platforms — Google, Apple, Microsoft, and many financial institutions — now support passkeys. To get started, go to your account's security settings and look for "Passkeys" or "Sign in with your device." Enabling passkeys on your highest-value accounts — email, banking, and Microsoft 365 — dramatically reduces your exposure to credential theft with almost no added friction for daily use.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="nl-footer">
+    <div class="footer-left">Valley TechLogic &middot; (209) 357-3121 &middot; info@valleytechlogic.com</div>
+    <div class="footer-right">Prepared for Day Break Adult Day Health Care &middot; June 2026</div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 4: LEAVE A REVIEW ══════════════ -->
+<div class="booklet-page" id="page-review">
+  <div class="rv-header">
+    <img src="https://image2url.com/r2/default/images/1775769377217-bb1e39c8-2692-4ccc-899a-24767e50e011.jpg" alt="Valley TechLogic" onerror="this.style.display='none'" />
+    <div class="rv-header-right">
+      <div class="label">Google Reviews</div>
+      <div class="title">Leave Us a Review</div>
+      <div class="date">June 2026</div>
+    </div>
+  </div>
+  <hr class="rv-divider">
+  <div class="rv-body">
+    <div class="intro-badge">We'd love your feedback</div>
+    <h2>Enjoying the service? Let us know!</h2>
+    <p>Your review helps other local businesses find the IT support they need — and it means the world to our team. Scan the QR code for your nearest location to leave us a quick Google review. It only takes a minute!</p>
+    <div class="stars">
+      <svg class="star" viewBox="0 0 24 24" fill="#FBB900"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24" fill="#FBB900"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24" fill="#FBB900"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24" fill="#FBB900"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" viewBox="0 0 24 24" fill="#FBB900"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <div class="qr-grid">
+      <a class="qr-card" href="https://g.page/r/CSOlQhDzR6LjEBM/review" target="_blank" rel="noopener">
+        <div class="location-label">Location</div>
+        <div class="location-name">Merced</div>
+        <div id="qr-merced"></div>
+        <div class="scan-note">g.page/r/CSOlQhDzR6LjEBM/review</div>
+      </a>
+      <a class="qr-card" href="https://g.page/r/CV7j_9qqqQfxEBM/review" target="_blank" rel="noopener">
+        <div class="location-label">Location</div>
+        <div class="location-name">Atwater</div>
+        <div id="qr-atwater"></div>
+        <div class="scan-note">g.page/r/CV7j_9qqqQfxEBM/review</div>
+      </a>
+    </div>
+  </div>
+  <div class="rv-footer">
+    <div class="footer-left">Valley TechLogic &middot; (209) 357-3121 &middot; info@valleytechlogic.com</div>
+    <div class="footer-right">Prepared for Day Break Adult Day Health Care &middot; June 2026</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // Generate QR codes
+  new QRCode(document.getElementById("qr-merced"), {
+    text: "https://g.page/r/CSOlQhDzR6LjEBM/review",
+    width: 128, height: 128,
+    colorDark: "#000000", colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+  new QRCode(document.getElementById("qr-atwater"), {
+    text: "https://g.page/r/CV7j_9qqqQfxEBM/review",
+    width: 128, height: 128,
+    colorDark: "#000000", colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  // Open items toggle
+  function toggleOpenItems(el) {
+    const body = document.getElementById('open-items-body');
+    el.classList.toggle('collapsed');
+    body.classList.toggle('hidden');
+  }
+</script>
+</body>
+</html>
